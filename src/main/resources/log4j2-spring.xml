@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <!-- 타임존을 Asia/Seoul로 고정하고 밀리초를 제외한 패턴 -->
+        <Property name="LOG_PATTERN">[%d{yyyy-MM-dd HH:mm:ss}{Asia/Seoul}] %highlight{%-5p} [%t] %style{%C{1.}}{cyan} : %m%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+        <!-- com.bnz 패키지 로그 설정 -->
+        <Logger name="com.bnz" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- MyBatis 관련 로그 설정 -->
+        <Logger name="org.mybatis" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.apache.ibatis" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="jdbc.sqlonly" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- 프로필별 설정은 스프링 환경 변수를 통해 제어 가능하지만, 
+             Log4j2-spring.xml에서는 아래와 같이 기본 레벨을 설정해둡니다. -->
+    </Loggers>
+</Configuration>
