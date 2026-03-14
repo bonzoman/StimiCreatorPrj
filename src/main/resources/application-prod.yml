@@ -1,5 +1,5 @@
 server:
-  port: 5555
+  port: 6666
   forward-headers-strategy: native
   error:
     whitelabel:
@@ -10,6 +10,13 @@ spring:
     url: jdbc:mysql://mysql-db:3306/g2mDB?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
     username: g2m
     # password는 CI 환경변수(SPRING_DATASOURCE_PASSWORD)로 주입됨
+    # 커넥션 풀 (HikariCP) 설정 (선택)
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-timeout: 20000
+      max-lifetime: 1800000
 
 mybatis:
   mapper-locations: classpath:mapper/*Query.xml
@@ -25,11 +32,3 @@ telegram:
   chat:
     # @stepmonxyz 채널
     id: -1003320387761
-
-apns:
-  team-id: "6N5396RU93"
-  key-id: "M48CNFDVZQ"
-  p8-path: "keys/AuthKey_M48CNFDVZQ.p8"
-  topic: "com.bnz.StepMon"
-  use-sandbox: false
-

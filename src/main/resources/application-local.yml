@@ -1,5 +1,5 @@
 server: # webserver port(default : 8080, 0으로 하면 random port)
-  port: 5555
+  port: 6666
 
 spring:
   # 데이터베이스 연결 정보

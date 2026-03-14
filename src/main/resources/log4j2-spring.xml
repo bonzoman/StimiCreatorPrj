@@ -16,8 +16,8 @@
             <AppenderRef ref="Console"/>
         </Root>
 
-        <!-- com.bnz 패키지 로그 설정 -->
-        <Logger name="com.bnz" level="debug" additivity="false">
+        <!-- com.stimi 패키지 로그 설정 -->
+        <Logger name="com.stimi" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
