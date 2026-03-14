@@ -1,0 +1,26 @@
+image: docker:latest
+
+stages:
+  - build
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - docker build -t stimicreator-api .
+
+deploy-job:
+  stage: deploy
+  script:
+    # 이미 실행 중인 컨테이너가 있으면 강제로 삭제
+    - docker rm -f stimicreator-api || true
+    - >
+      docker run -d --name stimicreator-api
+      --network mysql_default
+      -e SPRING_DATASOURCE_PASSWORD="${DB_PASS_VAR}"
+      -e TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}"
+      -e SERVER_PORT=5556
+      -p 5556:5556
+      --restart always
+      stimicreator-api
+  when: manual # 수동배포: GitLab의 [Build > Pipelines] 옆에 재생(▶️) 버튼 클릭

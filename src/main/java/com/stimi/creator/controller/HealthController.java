@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalTime;
-
 @RestController
 @RequiredArgsConstructor
 public class HealthController {
@@ -14,7 +12,7 @@ public class HealthController {
 
     @GetMapping("/health")
     public String health() {
-        return "OK";
+        return "Stimi Creator OK";
     }
 
 //    @GetMapping("/sendtel")
