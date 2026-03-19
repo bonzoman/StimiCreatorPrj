@@ -10,6 +10,7 @@ import java.util.TimeZone;
 @SpringBootApplication
 @EnableScheduling
 public class StimiCreatorApplication {
+    //
     public static void main(String[] args) {
         SpringApplication.run(StimiCreatorApplication.class, args);
     }
