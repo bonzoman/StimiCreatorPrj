@@ -1,3 +1,44 @@
 spring:
   profiles:
-    active: local  # 기본적으로 로컬 환경을 사용하도록 설정.
+    active: local
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/creatorstimi?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: root
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+mybatis:
+  mapper-locations: classpath:sql/*Query.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    jdbc-type-for-null: NULL
+
+shorts:
+  gemini:
+    api-key: ${GEMINI_API_KEY:}
+    model: gemini-2.0-flash
+  youtube:
+    client-id: ${GOOGLE_CLIENT_ID:}
+    client-secret: ${GOOGLE_CLIENT_SECRET:}
+    refresh-token: ${GOOGLE_REFRESH_TOKEN:}
+  paths:
+    ai-clips: ./assets/ai-clips
+    output: ./output
+    fonts: ./fonts
+    bgm: ./assets/bgm
+  ffmpeg:
+    path: ffmpeg
+  tts:
+    voice: ko-KR-SunHiNeural
+    edge-tts-path: edge-tts
